@@ -11,10 +11,10 @@ const toolConfig = [
                 link: "function/001.genbank_feat_extract.html"
             },
             {
-                toolName: "待添加功能",
-                toolDesc: "预留空位",
-                toolIcon: "📋",
-                link: "tool_01.html"
+                toolName: "CDS序列翻译",
+                toolDesc: "将FASTA格式CDS核酸序列翻译为蛋白质序列",
+                toolIcon: "images/005.png",
+                link: "function/005.CDS_translate.html"
             },
             {
                 toolName: "待添加功能",
