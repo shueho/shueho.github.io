@@ -512,11 +512,10 @@
             batchData = [];
             let html = `<div class="res-card-list">`;
 
-            // 1. 上色总图（优先级第一）
             if(finalColorSvg){
                 html += `
                 <div class="res-card">
-                    <div class="res-title">一、全局合并图（碱基上色）final_color.svg</div>
+                    <div class="res-title">一、上色组图：final_color.svg</div>
                     <div class="res-btn-group">
                         <button class="btn" onclick="downloadFile(finalColorSvg, 'final_color.svg')">下载上色总图</button>
                     </div>
@@ -524,11 +523,10 @@
                 `;
             }
 
-            // 2. 未上色总图（优先级第二）
             if(finalNoColorSvg){
                 html += `
                 <div class="res-card">
-                    <div class="res-title">二、全局合并图（未上色）final.svg</div>
+                    <div class="res-title">二、未上色组图：final.svg</div>
                     <div class="res-btn-group">
                         <button class="btn" onclick="downloadFile(finalNoColorSvg, 'final.svg')">下载未上色总图</button>
                     </div>
@@ -536,10 +534,9 @@
                 `;
             }
 
-            // 3. 批量下载容器：单文件 + 分组文件
             html += `
             <div class="res-card">
-                <div class="res-title">三、单文件 & 分组文件（支持勾选批量下载）</div>
+                <div class="res-title">三、单tRNA美化结果（可以勾选批量下载）</div>
                 <div class="batch-container">
                     <div class="batch-head">
                         <label><input type="checkbox" id="checkAll" onchange="toggleAll(this)"> 全选</label>
