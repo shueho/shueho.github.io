@@ -66,7 +66,6 @@ function getAll64Codons() {
     return list;
 }
 
-// 核心解析：兼容规则里 T 与 序列里 U 互通
 function buildCodonMapFromRule(type) {
     const allCodons = getAll64Codons();
     const codonMap = {};
@@ -98,7 +97,6 @@ function buildCodonMapFromRule(type) {
             const regBody = patternStr.slice(1, -1);
             const reg = new RegExp(regBody, "i");
 
-            // 关键：RNA的U 替换为 t，匹配原DNA规则里的 [ct]
             for (const codon of allCodons) {
                 const dnaLike = codon.replace(/U/g, "t");
                 if (reg.test(dnaLike)) {

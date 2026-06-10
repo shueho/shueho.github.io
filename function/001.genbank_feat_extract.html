@@ -68,7 +68,7 @@
             gap: 10px;
             align-items: center;
         }
-        /* 复制临时文本域样式（隐藏不可见） */
+
         .copy-temp {
             position: absolute;
             left: -9999px;
@@ -152,7 +152,7 @@
         </div>
     </div>
 
-    <!-- 隐藏临时文本域，用于兼容旧版复制方案 -->
+
     <textarea id="tempCopyArea" class="copy-temp"></textarea>
 
     <footer>
@@ -163,7 +163,10 @@
             </div>
         </span>
         <div class="email">联系作者：studid@163.com</div>
-        BioDataTools 网页版 &copy; 2026 地上飞猪
+        BioDataTools 网页版 &copy; 2026 地上飞猪<br>
+        声明：大部分内容改编自BioDataTools工具集，部分脚本取自开源项目并标注原作者，网页设计由AI辅助完成。<br>
+        如需引用，可引用本网站：https://www.biodatatools.top或BioDataTools工具集。<br>
+        参考文献：薛浩, 大石鸡（Alectoris magna）基因组结构与比较基因组分析[D]. 烟台: 烟台大学, 2024.
     </footer>
 
     <script>
@@ -359,7 +362,7 @@
             }
         }
 
-        // 【修复版】兼容双方案复制剪贴板，适配 GitHub Pages HTTPS
+
         function copyAllFasta() {
             if (!fastaAll || fastaAll.trim() === "") {
                 toolbarTip.innerHTML = '<span class="error">❌ 暂无可复制序列</span>';
@@ -368,27 +371,24 @@
             copyAllBtn.disabled = true;
             toolbarTip.innerHTML = "";
 
-            // 方案1：现代 Clipboard API
+
             if (navigator.clipboard && window.isSecureContext) {
                 navigator.clipboard.writeText(fastaAll)
                 .then(() => {
                     toolbarTip.innerHTML = '<span class="success">✅ 已复制全部序列</span>';
                 })
                 .catch(() => {
-                    // 现代API失败，自动走降级方案
                     copyByTempArea();
                 })
                 .finally(() => {
                     copyAllBtn.disabled = false;
                 });
             } else {
-                // 非安全上下文 / 浏览器不支持，直接走降级方案
                 copyByTempArea();
                 copyAllBtn.disabled = false;
             }
         }
 
-        // 降级方案：隐藏文本域 + execCommand 复制（兼容所有静态页/老浏览器）
         function copyByTempArea() {
             tempCopyArea.value = fastaAll;
             tempCopyArea.select();
