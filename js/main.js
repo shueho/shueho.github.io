@@ -6,7 +6,7 @@ function renderSideNav() {
     // 博客首页
     const blogItem = document.createElement('li');
     blogItem.innerHTML = `
-        <a href="blog/home.txt" class="parent-item blog-home-item">
+        <a href="blog/home.html" class="parent-item blog-home-item">
             📝 博客首页
         </a>
     `;
