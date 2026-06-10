@@ -11,8 +11,8 @@ const toolConfig = [
                 link: "function/001.genbank_feat_extract.html"
             },
             {
-                toolName: "CDS序列翻译",
-                toolDesc: "将FASTA格式CDS核酸序列翻译为蛋白质序列",
+                toolName: "核酸到氨基酸序列翻译",
+                toolDesc: "将蛋白编码基因序列翻译为氨基酸序列",
                 toolIcon: "images/005.png",
                 link: "function/005.CDS_translate.html"
             },
