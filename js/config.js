@@ -17,10 +17,10 @@ const toolConfig = [
                 link: "function/005.CDS_translate.html"
             },
             {
-                toolName: "待添加功能",
-                toolDesc: "预留空位",
-                toolIcon: "📊",
-                link: "tool_02.html"
+                toolName: "DNA/RNA/氨基酸序列拼接",
+                toolDesc: "核酸（DNA/RNA）和蛋白质序列清洗拼接",
+                toolIcon: "images/006.png",
+                link: "function/006.Seq_concat.html"
             },
             {
                 toolName: "待添加功能",
