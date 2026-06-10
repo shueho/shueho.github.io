@@ -12,6 +12,15 @@ function renderSideNav() {
     `;
     navList.appendChild(blogItem);
 
+    // 在线科研绘图 ==========
+    const plotItem = document.createElement('li');
+    plotItem.innerHTML = `
+        <a href="plot/home.html" target="_blank" class="parent-item blog-home-item">
+            🎨 在线科研绘图
+        </a>
+    `;
+    navList.appendChild(plotItem);
+
     // 渲染分类导航
     toolConfig.forEach((category, catIndex) => {
         const categoryItem = document.createElement('li');
