@@ -124,6 +124,7 @@ header {
 .step-title {
     font-size: 1.4rem;
     color: #1f4068;
+    font-weight: bold; 
     margin-bottom: 1.5rem;
     padding-bottom: 0.8rem;
     border-bottom: 2px solid #e8edf2;
