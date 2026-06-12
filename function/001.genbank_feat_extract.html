@@ -4,94 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GenBank特征提取 - BioDataTools 网页版</title>
-    <link rel="stylesheet" href="COMMON/global.css">
-    <style>
-        .radio-box {
-            margin: 10px 0 15px;
-        }
-        .radio-box label {
-            margin-right: 25px;
-            cursor: pointer;
-        }
-        .file-input, .text-input {
-            margin: 10px 0;
-        }
-        textarea {
-            width: 100%;
-            min-height: 180px;
-            padding: 8px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            resize: vertical;
-        }
-        .filter-box {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin: 15px 0 0 0;
-        }
-        .tip-text {
-            margin: 10px 0;
-            font-weight: 500;
-        }
-        .warn { color: #e67700; }
-        .error { color: #dc3545; }
-        .success { color: #28a745; }
-        .btn {
-            padding: 8px 20px;
-            background: #1f4068;
-            color: #fff;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 1rem;
-        }
-        .btn:disabled {
-            background: #999;
-            cursor: not-allowed;
-        }
-        .result-item {
-            border: 1px solid #e8edf2;
-            border-radius: 6px;
-            padding: 12px;
-            margin: 10px 0;
-        }
-        .seq-area {
-            word-break: break-all;
-            font-family: Consolas, monospace;
-            margin-top: 8px;
-            line-height: 1.8;
-        }
-        .result-toolbar {
-            margin: 10px 0;
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .copy-temp {
-            position: absolute;
-            left: -9999px;
-            top: -9999px;
-            opacity: 0;
-            pointer-events: none;
-        }
-    </style>
+    <!-- 引入全局公用样式 -->
+    <link rel="stylesheet" href="../COMMON/global.css">
 </head>
 <body>
-    <header>
-        <div class="header-wrap">
-            <div class="site-title">
-                <h1>BioDataTools 网页版</h1>
-                <div class="author">脚本原作者：Paul Stothard, University of Alberta, Canada（修改：地上飞猪）</div>
-            </div>
-            <div>
-                <a href="https://space.bilibili.com/33053326" target="_blank" class="bilibili-link">前往B站主页</a>
-                <a href="https://github.com/shueho/BioDataTools" target="_blank" class="github-link">GitHub项目</a>
-                <a href="../index.html" target="_self" class="back-home">返回首页</a>
-            </div>
-        </div>
-    </header>
+
+    <div id="common-header"></div>
 
     <div class="main" id="app">
         <div class="page-intro">
@@ -99,15 +17,12 @@
             <p>支持上传GB文件/粘贴GB文本，提取基因、CDS、mRNA、内含子等特征序列。</p>
         </div>
 
+        <!-- 第一步卡片 -->
         <div class="step-card">
             <div class="step-title">第一步：导入 GenBank 注释文件</div>
             <div class="radio-box">
-                <label>
-                    <input type="radio" name="inputMode" value="file" checked onchange="switchInput()"> 上传 GB 文件
-                </label>
-                <label>
-                    <input type="radio" name="inputMode" value="text" onchange="switchInput()"> 粘贴 GB 文本
-                </label>
+                <label><input type="radio" name="inputMode" value="file" checked onchange="switchInput()"> 上传 GB 文件</label>
+                <label><input type="radio" name="inputMode" value="text" onchange="switchInput()"> 粘贴 GB 文本</label>
             </div>
             <div class="file-input">
                 <input type="file" id="gbFile" accept=".gb,.gbk,.genbank">
@@ -118,6 +33,7 @@
             <div id="msgTip" class="tip-text"></div>
         </div>
 
+        <!-- 第二步卡片 -->
         <div class="step-card">
             <div class="step-title">第二步：筛选提取特征</div>
             <div class="filter-box">
@@ -141,6 +57,7 @@
             </div>
         </div>
 
+        <!-- 第三步卡片 -->
         <div class="step-card">
             <div class="step-title">第三步：提取结果</div>
             <div class="result-toolbar">
@@ -152,26 +69,25 @@
         </div>
     </div>
 
-
     <textarea id="tempCopyArea" class="copy-temp"></textarea>
 
-    <footer>
-        <span class="donate-wrap">
-            赞赏支持
-            <div class="donate-tip">
-                <img class="donate-img" src="../images/donate.png" alt="捐赠二维码">
-            </div>
-        </span>
-        <div class="email">联系作者：studid@163.com</div>
-        BioDataTools 网页版 &copy; 2026 地上飞猪<br>
-        声明：大部分内容改编自BioDataTools工具集，部分脚本取自开源项目并标注原作者，网页设计由AI辅助完成。<br>
-        如需引用，可引用本网站：https://www.biodatatools.top或BioDataTools工具集。<br>
-        参考文献：薛浩, 大石鸡（Alectoris magna）基因组结构与比较基因组分析[D]. 烟台: 烟台大学, 2024.
-    </footer>
+    <div id="common-footer"></div>
+
+    <script>
+        window.headerConfig = {
+            author: '脚本原作者：Paul Stothard, University of Alberta, Canada（修改：地上飞猪）',
+            bilibiliText: '前往B站主页',
+            githubText: 'GitHub项目',
+            returnHomeUrl: '../index.html'
+        };
+    </script>
+    <script src="../COMMON/utils.js"></script>
+    <script src="../COMMON/header.js"></script>
+    <script src="../COMMON/footer.js"></script>
 
     <script>
         let rawGBContent = "";
-        let fastaAll = ""; // 用于保存全部FASTA
+        let fastaAll = "";
         const msgTip = document.getElementById("msgTip");
         const resultBox = document.getElementById("resultBox");
         const gbFile = document.getElementById("gbFile");
@@ -208,6 +124,7 @@
             reader.onload = function (ev) {
                 rawGBContent = ev.target.result;
                 msgTip.innerHTML = `<span class="success">✅ 文件读取成功：${file.name}</span>`;
+                window.showToast(`✅ 文件 ${file.name} 加载成功`);  // 新增 Toast 提醒
                 resultBox.innerHTML = "";
                 fastaAll = "";
                 copyAllBtn.disabled = true;
@@ -215,6 +132,23 @@
             };
             reader.readAsText(file);
         });
+
+        // 新增：从特征文本中提取名称（优先级：gene > product > locus_tag > note）
+        function getFeatureName(featureText) {
+            const patterns = [
+                /\/gene\s*=\s*["']?([^"'\n\r]+)["']?/i,
+                /\/product\s*=\s*["']?([^"'\n\r]+)["']?/i,
+                /\/locus_tag\s*=\s*["']?([^"'\n\r]+)["']?/i,
+                /\/note\s*=\s*["']?([^"'\n\r]+)["']?/i
+            ];
+            for (let pattern of patterns) {
+                const match = featureText.match(pattern);
+                if (match && match[1]) {
+                    return match[1].trim();
+                }
+            }
+            return "NA";
+        }
 
         function filterFastaTitle(str) {
             if (!str) return "";
@@ -279,37 +213,45 @@
             return { html:outputHtml, fasta:fasta };
         }
 
-        function prepareFeatures (arrayOfFeatures,dnaSequence,outputType,targetKeys) {
-            let outHtml = "";
-            let outFasta = "";
-            for (var i=1; i < arrayOfFeatures.length; i++) {
-                arrayOfFeatures[i] = arrayOfFeatures[i].replace(/[\[\]\*]/g,"");
-                let featureTitle = (arrayOfFeatures[i].match(/[^ \f\n\r\t\v]+ /) || [""])[0].trim();
-                if (!targetKeys.includes(featureTitle.toUpperCase())) continue;
+function prepareFeatures (arrayOfFeatures,dnaSequence,outputType,targetKeys) {
+    let outHtml = "";
+    let outFasta = "";
+    for (var i=1; i < arrayOfFeatures.length; i++) {
+        arrayOfFeatures[i] = arrayOfFeatures[i].replace(/[\[\]\*]/g,"");
+        let featureTitle = (arrayOfFeatures[i].match(/[^ \f\n\r\t\v]+ /) || [""])[0].trim();
+        if (!targetKeys.includes(featureTitle.toUpperCase())) continue;
 
-                let geneName = "";
-                let geneMatch = arrayOfFeatures[i].match(/\/gene\s*=\s*["']([^"']+)["']/i);
-                if(geneMatch) geneName = geneMatch[1];
+        // 获取特征名称（gene/product/locus_tag/note）
+        let geneName = getFeatureName(arrayOfFeatures[i]);
 
-                let firstQualifier = "";
-                let qMatch = arrayOfFeatures[i].match(/\/[^\f\n\r]+/);
-                if(qMatch) firstQualifier = qMatch[0];
+        // 获取第一个限定符（例如 "/gene" 或 "/product"）
+        let firstQualifier = "";
+        let qMatch = arrayOfFeatures[i].match(/\/[^\f\n\r]+/);
+        if (qMatch) firstQualifier = qMatch[0];
 
-                let posPart = arrayOfFeatures[i].replace(new RegExp("^\\s*"+featureTitle),"").split(/\//)[0];
-                let seq = printFeature(posPart,dnaSequence,outputType);
-                let seqLen = seq.length;
+        // 提取限定符名称（等号前的部分）
+        let qualifierName = firstQualifier ? firstQualifier.split('=')[0].replace(/^\//, '') : "";
 
-                let header = `>${geneName||"NA"} |${featureTitle}|${firstQualifier||"NA"}|len=${seqLen}`;
-                let warn = hasAmbiguousBase(seq) ? ' <span class="warn">⚠️ 含简并碱基</span>' : '';
+        // 位置解析
+        let posPart = arrayOfFeatures[i].replace(new RegExp("^\\s*"+featureTitle),"").split(/\//)[0];
+        let seq = printFeature(posPart,dnaSequence,outputType);
+        let seqLen = seq.length;
 
-                outHtml += `<div style="margin:12px 0;">
-                    <p><strong>${header}</strong>${warn}</p>
-                    <div class="seq-area">${seq}</div>
-                </div>`;
-                outFasta += header + "\n" + seq + "\n";
-            }
-            return { html:outHtml, fasta:outFasta };
-        }
+        // 构建 header 各个部分
+        let namePart = (geneName && geneName !== "NA") ? `${geneName} ` : "";
+        let qualPart = (qualifierName && qualifierName !== "") ? `${qualifierName} ` : "";
+	let cleanName = namePart.trim().replace(/ /g, '_');
+	let header = `>${cleanName} ${featureTitle} Lable=${qualPart} Len=${seqLen}`;
+        let warn = hasAmbiguousBase(seq) ? ' <span class="warn">⚠️ 含简并碱基</span>' : '';
+
+        outHtml += `<div style="margin:12px 0;">
+            <p><strong>${header}</strong>${warn}</p>
+            <div class="seq-area">${seq}</div>
+        </div>`;
+        outFasta += header + "\n" + seq + "\n";
+    }
+    return { html:outHtml, fasta:outFasta };
+}
 
         function printFeature(featurePos,dnaSequence,outputType) {
             featurePos = featurePos.replace(/<|>/g,"");
@@ -362,27 +304,23 @@
             }
         }
 
-
         function copyAllFasta() {
             if (!fastaAll || fastaAll.trim() === "") {
-                toolbarTip.innerHTML = '<span class="error">❌ 暂无可复制序列</span>';
+                window.showToast('❌ 暂无可复制序列');
                 return;
             }
             copyAllBtn.disabled = true;
-            toolbarTip.innerHTML = "";
-
-
             if (navigator.clipboard && window.isSecureContext) {
                 navigator.clipboard.writeText(fastaAll)
-                .then(() => {
-                    toolbarTip.innerHTML = '<span class="success">✅ 已复制全部序列</span>';
-                })
-                .catch(() => {
-                    copyByTempArea();
-                })
-                .finally(() => {
-                    copyAllBtn.disabled = false;
-                });
+                    .then(() => {
+                        window.showToast('✅ 已复制全部序列');
+                    })
+                    .catch(() => {
+                        copyByTempArea();
+                    })
+                    .finally(() => {
+                        copyAllBtn.disabled = false;
+                    });
             } else {
                 copyByTempArea();
                 copyAllBtn.disabled = false;
@@ -393,22 +331,19 @@
             tempCopyArea.value = fastaAll;
             tempCopyArea.select();
             tempCopyArea.setSelectionRange(0, tempCopyArea.value.length);
-
             try {
                 const success = document.execCommand("copy");
                 if (success) {
-                    toolbarTip.innerHTML = '<span class="success">✅ 已复制全部序列（兼容模式）</span>';
+                    window.showToast('✅ 已复制全部序列');
                 } else {
-                    toolbarTip.innerHTML = '<span class="error">❌ 复制失败，请手动选中内容复制</span>';
+                    window.showToast('❌ 复制失败，请手动复制');
                 }
             } catch (e) {
-                toolbarTip.innerHTML = '<span class="error">❌ 复制异常，请手动复制</span>';
+                window.showToast('❌ 复制异常');
             }
-            // 清空临时域
             tempCopyArea.value = "";
         }
 
-        // 下载FASTA文件（原逻辑无问题，保留）
         function downloadFasta() {
             if (!fastaAll) return;
             const blob = new Blob([fastaAll], {type:"text/plain"});
