@@ -81,6 +81,7 @@
         <div class="step-card">
             <div class="step-title">第三步：计算结果</div>
             <div class="result-top">
+                <button class="btn" id="copyResultBtn" disabled>复制结果(CSV)</button>
                 <button class="btn" id="exportCsvBtn" disabled>导出 RSCU 结果(CSV)</button>
             </div>
             <div id="resultBox"></div>
@@ -375,6 +376,7 @@
             resultBox.innerHTML = "";
             exportData = [];
             exportCsvBtn.disabled = true;
+            copyResultBtn.disabled = true;
         }
 
         function resetAll(){
@@ -419,6 +421,7 @@
 
             resultBox.innerHTML = outHtml;
             exportCsvBtn.disabled = false;
+            copyResultBtn.disabled = false; 
             window.showToast('✅ 计算完成');
         }
 
@@ -438,6 +441,23 @@
             URL.revokeObjectURL(url);
             window.showToast('✅ 导出成功');
         }
+function copyResultToClipboard() {
+    if (exportData.length === 0) {
+        window.showToast('❌ 暂无可复制的结果');
+        return;
+    }
+    let csv = "\ufeff基因名称,密码子,氨基酸(单字母),氨基酸(三字母),使用频数,RSCU值\n";
+    exportData.forEach(item => {
+        csv += `${item.gene},${item.codon},${item.aaOne},${item.aaThree},${item.frequency},${item.rscu}\n`;
+    });
+    navigator.clipboard.writeText(csv).then(() => {
+        window.showToast('✅ 结果已复制到剪贴板');
+    }).catch(() => {
+        window.showToast('❌ 复制失败，请手动复制');
+    });
+}
+document.getElementById('copyResultBtn').addEventListener('click', copyResultToClipboard);
+
 
         exportCsvBtn.addEventListener("click", exportToCSV);
         window.onload = initCodonSelect;
