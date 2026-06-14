@@ -22,8 +22,8 @@
         const startYear = 2023;
         const yearText = currentYear > startYear ? `${startYear}-${currentYear}` : `${startYear}`;
         
-        //const donateImgSrc = getDonateImgSrc();
-        const donateImgSrc = 'https://shueho.github.io/images/donate.png';
+        const donateImgSrc = getDonateImgSrc();
+        //const donateImgSrc = 'https://shueho.github.io/images/donate.png';
 
 
         const footerHTML = `

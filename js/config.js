@@ -25,6 +25,13 @@ const toolConfig = [
     link: "function/006.Seq_concat.html"
 },
 
+{
+    toolName: "基因排列可视化（基因重排图）",
+    toolDesc: "用于展示基因排布及基因重排，支持区分正负链及非编码区的可视化",
+    toolIcon: "images/008.png",
+    link: "function/008.Visualize_gene_arrangement.html"
+},
+
             {
                 toolName: "待添加功能",
                 toolDesc: "预留空位",
