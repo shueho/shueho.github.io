@@ -1,4 +1,5 @@
-
+#define _CRT_SECURE_NO_WARNINGS
+#pragma warning(disable:4703)
 /*
 ---------------------------------------------------------------
 ARWEN v1.2.3 Dean Laslett
